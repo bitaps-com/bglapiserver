@@ -12,10 +12,10 @@
 
 ### Methods
 
-####Blockchain
+#### Blockchain
 
 
-#####GET ```/block/{block_pointer}```
+##### GET ```/block/{block_pointer}```
 
 ###### PATH parameters
 
@@ -35,7 +35,7 @@
 ```
 
 
-#####GET ```/blocks/last/{n}```
+##### GET ```/blocks/last/{n}```
 
 
 ###### PATH parameters
@@ -57,7 +57,7 @@
 ```
 
 
-#####GET ```/blocks/today```
+##### GET ```/blocks/today```
 
 ###### RESPONSE
 
@@ -71,7 +71,7 @@
 ```
 
 
-#####GET ```/blocks/date/{day}```
+##### GET ```/blocks/date/{day}```
 
 
 ###### PATH parameters
@@ -93,7 +93,7 @@
 ```
 
 
-#####GET ```/blocks/last/{n}/hours```
+##### GET ```/blocks/last/{n}/hours```
 
 
 ###### PATH parameters
@@ -114,7 +114,7 @@
  "time": double}
 ```
 
-#####GET ```/block/headers/{block_pointer}/{count}```
+##### GET ```/block/headers/{block_pointer}/{count}```
 
 ###### PATH parameters
 
@@ -131,7 +131,7 @@
  "time": double}
 ```
 
-#####GET ```/block/data/{block_pointer}```
+##### GET ```/block/data/{block_pointer}```
 
 ###### PATH parameters
 
@@ -145,7 +145,7 @@
 | :--- | :--- | :--- | :--- |
 | `statistics` | `boolean` | True/False, False is by default| no |
 
-Response:
+###### RESPONSE
 ```javascript
 {"data": {"height": integer,
           "hash": string, 
@@ -183,7 +183,7 @@ Response:
 
 
 
-#####GET ```/block/data/last/{n}```
+##### GET ```/block/data/last/{n}```
 
 ###### PATH parameters
 
@@ -192,7 +192,7 @@ Response:
 | `n` | `integer` | block count<=2016 | yes |
 
 
-Response:
+###### RESPONSE
 ```javascript
 {"data": [{"height": integer,
            "hash": string, 
@@ -231,9 +231,9 @@ Response:
 
 
 
-#####GET ```/block/data/today```
+##### GET ```/block/data/today```
 
-Response:
+###### RESPONSE
 ```javascript
 {"data": [{"height": integer,
            "hash": string, 
@@ -271,7 +271,7 @@ Response:
 ```
 
 
-#####GET ```/block/data/date/{day}```
+##### GET ```/block/data/date/{day}```
 
 ###### PATH parameters
 
@@ -279,7 +279,7 @@ Response:
 | :--- | :--- | :--- | :--- |
 | `day` | `string` | date format YYYYMMDD | yes |
 
-Response:
+###### RESPONSE
 ```javascript
 {"data": [{"height": integer,
            "hash": string, 
@@ -317,7 +317,7 @@ Response:
 ```
 
 
-#####GET ```/block/data/last/{n}/hours```
+##### GET ```/block/data/last/{n}/hours```
 
 ###### PATH parameters
 
@@ -325,7 +325,7 @@ Response:
 | :--- | :--- | :--- | :--- |
 | `n` | `integer` | hours | yes |
 
-Response:
+###### RESPONSE
 ```javascript
 {"data": [{"height": integer,
            "hash": string, 
@@ -363,7 +363,7 @@ Response:
 ```
 
 
-#####GET ```/block/transactions/{block_pointer}```
+##### GET ```/block/transactions/{block_pointer}```
 
 
 ###### PATH parameters
@@ -424,7 +424,7 @@ Response:
 ```
 
 
-#####GET ```/block/transaction/id/list/{block_pointer}```
+##### GET ```/block/transaction/id/list/{block_pointer}```
 
 
 ###### PATH parameters
@@ -450,7 +450,7 @@ Response:
 
 
 
-#####GET ```/block/utxo/{block_pointer}```
+##### GET ```/block/utxo/{block_pointer}```
 
 ###### PATH parameters
 
@@ -483,7 +483,7 @@ Response:
 ```
 
 
-#####GET ```/blockchain/state/{block_pointer}```
+##### GET ```/blockchain/state/{block_pointer}```
 
 
 ###### PATH parameters
@@ -519,7 +519,7 @@ Response:
  "time": double}
 ```
 
-#####GET ```/block/addresses/statistics/{block_pointer}```
+##### GET ```/block/addresses/statistics/{block_pointer}```
 
 ###### PATH parameters
 
@@ -538,7 +538,7 @@ Response:
 ```
 
 
-#####GET ```/blockchain/addresses/statistics/{block_pointer}```
+##### GET ```/blockchain/addresses/statistics/{block_pointer}```
 
 ###### PATH parameters
 
@@ -558,9 +558,9 @@ Response:
 ```
 
 
-####Transaction
+#### Transaction
 
-#####GET ```/transaction/{hash}```
+##### GET ```/transaction/{hash}```
 
 
 ###### PATH parameters
@@ -612,7 +612,7 @@ Response:
 ```
 
 
-#####GET ```/transaction/hash/by/pointer/{block_height}:{block_index}```
+##### GET ```/transaction/hash/by/pointer/{block_height}:{block_index}```
 
 
 ###### PATH parameters
@@ -631,7 +631,7 @@ Response:
 
 
 
-#####GET ```/transaction/merkle_proof/{hash}```
+##### GET ```/transaction/merkle_proof/{hash}```
 
 
 ###### PATH parameters
@@ -714,7 +714,7 @@ Response:
 
 
 
-#####GET ```/mempool/transactions```
+##### GET ```/mempool/transactions```
 
 ###### GET parameters
 
@@ -737,7 +737,7 @@ Response:
 ```
 
 
-#####GET ```/mempool/transactions```
+##### GET ```/mempool/transactions```
 
 ###### GET parameters
 
@@ -760,7 +760,7 @@ Response:
 ```
 
 
-#####GET ```/mempool/state```
+##### GET ```/mempool/state```
 
 
 ###### RESPONSE
@@ -771,7 +771,7 @@ Response:
  "time": double}
 ```
 
-#####GET ```/mempool/invalid/transactions```
+##### GET ```/mempool/invalid/transactions```
 
 ###### GET parameters
 
@@ -792,7 +792,7 @@ Response:
 ```
 
 
-#####GET ```/mempool/doublespend/transactions```
+##### GET ```/mempool/doublespend/transactions```
 
 ###### GET parameters
 
@@ -817,7 +817,7 @@ Response:
 
 
 
-#####GET ```/mempool/recommended/fee```
+##### GET ```/mempool/recommended/fee```
 
 ###### GET parameters
 
@@ -837,10 +837,10 @@ Response:
 ```
 
 
-####Address
+#### Address
 
 
-#####GET ```/address/state/{address}```
+##### GET ```/address/state/{address}```
 
 ###### PATH parameters
 
@@ -875,7 +875,7 @@ Response:
  "time": double}
 ```
 
-#####GET ```/address/transactions/{address}```
+##### GET ```/address/transactions/{address}```
 
 ###### PATH parameters
 
@@ -936,7 +936,7 @@ Response:
 
 
 
-#####GET ```/address/unconfirmed/transactions/{address}```
+##### GET ```/address/unconfirmed/transactions/{address}```
 
 ###### PATH parameters
 
@@ -1000,7 +1000,7 @@ Response:
  "time": double}
 ```
 
-#####GET ```/address/utxo/{address}```
+##### GET ```/address/utxo/{address}```
 
 ###### PATH parameters
 
@@ -1032,7 +1032,7 @@ Response:
 
 
 
-#####GET ```/address/uutxo/{address}```
+##### GET ```/address/uutxo/{address}```
 
 ###### PATH parameters
 
