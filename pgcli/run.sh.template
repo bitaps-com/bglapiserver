@@ -1,0 +1,5 @@
+docker build -t pgcli_bglapi_server .
+docker run  --rm \
+            --name pgcli_bglapi_server \
+            -v /tmp/pgcli_bglapi_server:/var/run/postgresql  \
+            -it pgcli_bglapi_server postgres://postgres:test@/test

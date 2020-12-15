@@ -1,0 +1,2 @@
+docker container stop bglapi-server
+docker container rm bglapi-server
