@@ -183,7 +183,7 @@
 
 
 
-##### GET ```/block/data/last/{n}```
+##### GET ```/blocks/data/last/{n}```
 
 ###### PATH parameters
 
@@ -231,7 +231,7 @@
 
 
 
-##### GET ```/block/data/today```
+##### GET ```/blocks/data/today```
 
 ###### RESPONSE
 ```javascript
@@ -271,7 +271,7 @@
 ```
 
 
-##### GET ```/block/data/date/{day}```
+##### GET ```/blocks/data/date/{day}```
 
 ###### PATH parameters
 
@@ -317,7 +317,7 @@
 ```
 
 
-##### GET ```/block/data/last/{n}/hours```
+##### GET ```/blocks/data/last/{n}/hours```
 
 ###### PATH parameters
 
