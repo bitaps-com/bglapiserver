@@ -223,8 +223,7 @@
            "blockFeeReward": integer, 
            "confirmations": integer, 
            "transactionsCount": integer,
-           "coinbase": string, 
-           "statistics": object},
+           "coinbase": string},
             ...],
  "time": double}
 ```
@@ -264,8 +263,7 @@
            "blockFeeReward": integer, 
            "confirmations": integer, 
            "transactionsCount": integer,
-           "coinbase": string, 
-           "statistics": object},
+           "coinbase": string},
             ...],
  "time": double}
 ```
@@ -310,8 +308,7 @@
            "blockFeeReward": integer, 
            "confirmations": integer, 
            "transactionsCount": integer,
-           "coinbase": string, 
-           "statistics": object},
+           "coinbase": string},
             ...],
  "time": double}
 ```
@@ -356,8 +353,7 @@
            "blockFeeReward": integer, 
            "confirmations": integer, 
            "transactionsCount": integer,
-           "coinbase": string, 
-           "statistics": object},
+           "coinbase": string},
             ...],
  "time": double}
 ```
@@ -370,7 +366,7 @@
 
 | Parameter | Type | Description | Required |
 | :--- | :--- | :--- | :--- |
-| `block_pointer` | `string` | block height/block hash/"last" | yes |
+| `block_pointer` | `string` | block height/block hash | yes |
 
 ###### GET parameters
 
