@@ -647,7 +647,7 @@
 
 
 
-#####POST ```/transactions/by/pointer/list```
+##### POST ```/transactions/by/pointer/list```
 
 
 ###### POST parameters
@@ -691,7 +691,7 @@
 ```
 
 
-#####POST ```/transactions/hash/by/blockchain/pointer/list```
+##### POST ```/transactions/hash/by/blockchain/pointer/list```
 
 
 ###### POST parameters
@@ -979,7 +979,7 @@
  "time": double}
 ```
 
-#####POST ```/addresses/state/by/address/list```
+##### POST ```/addresses/state/by/address/list```
 
 ###### POST parameters
 
@@ -1056,7 +1056,7 @@
 ```
 
 
-#####POST ```/outpoints```
+##### POST ```/outpoints```
 
 ###### POST parameters
 
