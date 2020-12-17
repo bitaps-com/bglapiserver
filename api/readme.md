@@ -709,30 +709,6 @@
 ```
 
 
-
-##### GET ```/mempool/transactions```
-
-###### GET parameters
-
-| Parameter | Type | Description | Required |
-| :--- | :--- | :--- | :--- |
-| `page` | `integer` | 1 is by default | no |
-| `limit` | `integer` | limit per page | no |
-| `order` | `string` | asc/desc, asc is by default | no |
-| `from_timestamp` | `integer` | timestamp | no |
-
-###### RESPONSE
-```javascript
-{"data": {"list": array,
-          "page": integer,
-          "limit": integer,
-          "pages": integer,
-          "count": integer,
-          "fromTimestamp": integer},
- "time": double}
-```
-
-
 ##### GET ```/mempool/transactions```
 
 ###### GET parameters
