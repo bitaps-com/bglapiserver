@@ -47,6 +47,10 @@ chapter will be added soon ...
 * ~~**Payment forwarding** engine for payments forwarding service~~
 * ~~**Hot wallet** engine for wallet service~~
 
+### API documentation
+
+Please see [API documentation](https://github.com/bitaps-com/bglapiserver/tree/master/api)
+
 
 
 
