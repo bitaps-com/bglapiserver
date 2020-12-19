@@ -1,5 +1,5 @@
 
-<img src="doc/btcapi.png" width="350">
+<img src="doc/bglapi.png" width="350">
 
 
 ## BGLAPI Server
