@@ -164,17 +164,6 @@ class MempoolAnalytica():
                 async with self.db_pool.acquire() as conn:
                     async with conn.transaction():
                         last_hash = await conn.fetchval("SELECT height FROM blocks order by height desc  LIMIT 1;")
-
-                        if last_hash != self.last_hash:
-                            self.last_hash = last_hash
-                            outputs, inputs, transactions = self.refresh_stat()
-                            utxo_sequence = 0
-                            stxo_sequence = 0
-                            tx_sequence = 0
-                            dbs = set()
-                            dbs_childs = set()
-                            truncate_dbs_table = True
-
                         stxo = await conn.fetch("SELECT tx_id, out_tx_id, address, amount, pointer, sequence, outpoint,  id  "
                                                 "FROM connector_unconfirmed_stxo "
                                                 "WHERE id > $1;", stxo_sequence)
@@ -190,6 +179,48 @@ class MempoolAnalytica():
                                                     "from unconfirmed_transaction) t where block <= 920000;")
                         if row is not None:
                             best_fee = row
+                        if last_hash != self.last_hash:
+                            self.last_hash = last_hash
+                            outputs, inputs, transactions = self.refresh_stat()
+                            utxo_sequence = 0
+                            stxo_sequence = 0
+                            tx_sequence = 0
+                            dbs = set()
+                            dbs_childs = set()
+                            truncate_dbs_table = True
+                            if not tx:
+                                s_minute = int(time.time()) // 60
+                                if s_minute % 60 == 0 and self.last_hour < s_minute // 60:
+                                    s_hour = s_minute // 60
+                                    self.last_hour = s_hour
+                                    if s_hour % 24 == 0 and self.last_day < s_hour // 24:
+                                        s_day = s_hour // 24
+                                        self.last_day = s_day
+                                    else:
+                                        s_day = None
+                                else:
+                                    s_hour = None
+                                    s_day = None
+
+                                async with self.db_pool.acquire() as conn:
+                                    async with conn.transaction():
+                                        await conn.execute("INSERT INTO mempool_analytica "
+                                                           "(minute, hour, day, inputs, outputs, transactions)"
+                                                           " VALUES "
+                                                           "($1, $2, $3, $4, $5, $6) "
+                                                           "ON CONFLICT (minute) "
+                                                           "DO UPDATE SET "
+                                                           " inputs = $4,"
+                                                           " outputs = $5, "
+                                                           " transactions = $6",
+                                                           s_minute,
+                                                           s_hour,
+                                                           s_day,
+                                                           json.dumps(inputs),
+                                                           json.dumps(outputs),
+                                                           json.dumps(transactions))
+
+
 
                 txsi = set()
                 txso = set()
@@ -509,8 +540,8 @@ class MempoolAnalytica():
                                         transactions["feeRate"]["bestHourly"],
                                         transactions["feeRate"]["best4h"],
                                         round(q,4)))
-
-
+                else:
+                    await asyncio.sleep(2)
                     # assert len(tx) == len(txsi)
                     # assert len(tx) == len(txso)
                     #
@@ -600,8 +631,6 @@ class MempoolAnalytica():
                     # print(v)
                     # if v == []:
                     #     await conn.fetch("DELETE  FROM  unconfirmed_transaction WHERE tx_id = ANY($1);", k)
-                else:
-                    await asyncio.sleep(2)
             except asyncio.CancelledError:
                 self.log.warning("Mempool analytica task canceled")
                 break
