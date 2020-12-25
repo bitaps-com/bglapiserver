@@ -242,7 +242,6 @@ async def block_transactions(pointer, option_raw_tx, limit, page, order, mode, a
         for row in rows:
             tx = Transaction(row["raw_transaction"], format="decoded",
                              testnet=app["testnet"], keep_raw_tx=option_raw_tx)
-            print('tx',tx)
             tx["blockIndex"] = (row["pointer"] >> 20) & 524287
             tx["blockTime"] = block_time
             tx["timestamp"] = row["timestamp"]
