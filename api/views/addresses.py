@@ -34,34 +34,39 @@ async def get_address_state_by_list(request):
             type = 2
     except:
         pass
-
     try:
         try:
             await request.post()
             data = await request.json()
-            if len(data) > 50:
-                raise APIException(PARAMETER_ERROR, "only 50 addresses allowed")
-            for address in data:
-                origin = address
-                addr_type = address_type(address, num=True)
-                if addr_type in (0, 1, 5, 6):
-                    address_net = address_net_type(address)
-                    if address_net == "testnet" and not request.app["testnet"]:
-                        raise APIException(PARAMETER_ERROR, "testnet address is invalid for mainnet")
-                    if address_net == "mainnet" and request.app["testnet"]:
-                        raise APIException(PARAMETER_ERROR, "mainnet address is invalid for testnet")
-                    try:
-                        address = b"".join((bytes([addr_type]), address_to_hash(address, hex=False)))
-                    except:
-                        raise APIException(PARAMETER_ERROR, "invalid address")
-                else:
-                    try:
-                        address = bytes_needed(address)
-                    except:
-                        raise APIException(PARAMETER_ERROR, "invalid address")
-                addresses[address] = origin
+            addresses_list=data
         except:
-            raise APIException(JSON_DECODE_ERROR, "invalid transaction pointers list")
+            if 'list' in parameters:
+                addresses_list = parameters['list'].split(',')
+            else:
+                raise APIException(JSON_DECODE_ERROR, "invalid addresses list")
+
+        if len(addresses_list) > 50:
+            raise APIException(PARAMETER_ERROR, "only 50 addresses allowed")
+
+        for address in addresses_list:
+            origin = address
+            addr_type = address_type(address, num=True)
+            if addr_type in (0, 1, 5, 6):
+                address_net = address_net_type(address)
+                if address_net == "testnet" and not request.app["testnet"]:
+                    raise APIException(PARAMETER_ERROR, "testnet address is invalid for mainnet")
+                if address_net == "mainnet" and request.app["testnet"]:
+                    raise APIException(PARAMETER_ERROR, "mainnet address is invalid for testnet")
+                try:
+                    address = b"".join((bytes([addr_type]), address_to_hash(address, hex=False)))
+                except:
+                    raise APIException(PARAMETER_ERROR, "invalid address")
+            else:
+                try:
+                    address = bytes_needed(address)
+                except:
+                    raise APIException(PARAMETER_ERROR, "invalid address")
+            addresses[address] = origin
 
         response = await address_list_state(addresses, type, request.app)
 

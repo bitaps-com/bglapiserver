@@ -961,16 +961,50 @@
 
 | Parameter | Type | Description | Required |
 | :--- | :--- | :--- | :--- |
-| `data` | `list` | address list | yes |
+| `data` | `list` | address list (list length<=50) | yes |
 
 
 ###### RESPONSE
 ```javascript
 {"data": {"{address}": {"confirmed": integer,
-                        "unconfirmed": integer},
+                        "unconfirmed": integer,
+                        "receivedAmount": integer,
+                        "receivedTxCount": integer,
+                        "sentAmount": integer,
+                        "sentTxCount": integer,
+                        "pendingReceivedAmount": integer,
+                        "pendingSentAmount": integer,
+                        "pendingReceivedTxCount": integer,
+                        "pendingSentTxCount": integer},
                         ...},
  "time": double}
 ```
+
+##### GET ```/addresses/state/by/address```
+
+###### GET parameters
+
+| Parameter | Type | Description | Required |
+| :--- | :--- | :--- | :--- |
+| `list` | `string` | comma separated values (addresses list, list length<=50) | yes |
+
+
+###### RESPONSE
+```javascript
+{"data": {"{address}": {"confirmed": integer,
+                        "unconfirmed": integer,
+                        "receivedAmount": integer,
+                        "receivedTxCount": integer,
+                        "sentAmount": integer,
+                        "sentTxCount": integer,
+                        "pendingReceivedAmount": integer,
+                        "pendingSentAmount": integer,
+                        "pendingReceivedTxCount": integer,
+                        "pendingSentTxCount": integer},
+                        ...},
+ "time": double}
+```
+
 
 ##### GET ```/address/utxo/{address}```
 

@@ -91,6 +91,7 @@ def setup_routes(app):
     app.router.add_route('POST', '/rest/addresses/state/by/address/list', get_address_state_by_list)
     if app["address_state"]:
         app.router.add_route('GET', '/rest/block/addresses/statistics/{pointer}', get_block_addresses_stat)
+        app.router.add_route('GET', '/rest/addresses/state/by/address', get_address_state_by_list)
         app.router.add_route('GET', '/rest/blockchain/addresses/statistics/{pointer}', get_blockchain_addresses_stat)
 
 
