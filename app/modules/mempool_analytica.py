@@ -449,7 +449,7 @@ class MempoolAnalytica():
                                 transactions["vSize"]["min"]["value"] = v_size
                                 transactions["vSize"]["min"]["txId"] = rh2s(row["tx_id"])
 
-                    if transactions["vSize"]["total"] > 1000000:
+                    if transactions["vSize"]["total"] > 1000000/10:
                         transactions["feeRate"]["best"] = round(best_fee, 2)
                     else:
                         transactions["feeRate"]["best"] = 1
